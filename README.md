@@ -44,7 +44,7 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 | Skill | Loaded by |
 | --- | --- |
 | `ob-conventions`, `ob-context` | Everyone |
-| `ob-captain`, `ob-onboard` | Captain |
+| `ob-captain`, `ob-onboard`, `ob-setup` | Captain |
 | `ob-work` | Workers |
 | `ob-review`, `ob-quality` | Reviewer |
 | `ob-experience` | Auditor |
@@ -52,14 +52,14 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 
 ## Quick start
 
-1. Copy `templates/OWNER.md` to `~/.config/orca-bots/OWNER.md` and fill it in. If a bot folder name differs from its role, add `role=folder` lines to `~/.config/orca-bots/folders`.
-2. Create Captain manually in the Bots sidebar.
-3. From Captain's chat, `bash setup/create-bots.sh` → run each printed command → **Create bot** for each specialist.
-4. Install skills:
-   `npx skills add https://github.com/jdflament-sm/orca-bots --skill ob-conventions --skill ob-context --skill ob-captain --skill ob-onboard --skill ob-work --skill ob-review --skill ob-quality --skill ob-experience --skill ob-issues --skill ob-docs --global`
-5. Hand Captain a project: "take over owner/repo" (or several repos, or a folder). It discovers stack, commands, CI, merge rules and labels, then asks a few one-word policy questions.
-6. `bash setup/sync.sh adopt && bash setup/sync.sh apply` installs each SOUL and your `OWNER.md`.
-7. Finish `setup/bootstrap.md`.
+1. In Orca, create a bot named **Captain** (Bots sidebar).
+2. In Captain's chat: **"install orca-bots from https://github.com/jdflament-sm/orca-bots"**.
+
+Captain clones the repo, runs `setup/install.sh`, fills your `OWNER.md` (asking only what it can't find), proposes the specialists that fit your work, and shows a **Create bot** card for each. Press them; Captain finishes the sync and schedules.
+
+Manual install: `git clone … && bash setup/install.sh`, then edit `~/.config/orca-bots/OWNER.md`.
+
+Update later: tell Captain "update the bots" (`git pull` + `setup/install.sh`).
 
 ## Ownership
 

@@ -10,6 +10,7 @@ errors = []
 required = [
     "README.md",
     "setup/sync.sh",
+    "setup/install.sh",
     "setup/create-bots.sh",
     "setup/set-agent.mjs",
     "setup/bootstrap.md",

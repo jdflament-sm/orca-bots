@@ -1,19 +1,13 @@
 # Bootstrap checklist
-0. **Owner profile** — copy `templates/OWNER.md` to `~/.config/orca-bots/OWNER.md`, fill it in; add `role=folder` lines to `~/.config/orca-bots/folders` for renamed bots.
 
-1. **Cleanup** — old bot folders are removed; delete any old Captain manually in Orca's Bots sidebar.
-2. **Create bots** — create Captain manually in Orca, then from its chat run `bash setup/create-bots.sh` and press **Create bot** on each card, then `bash setup/sync.sh adopt && bash setup/sync.sh apply`.
-3. **Agent** — every bot runs on Claude (default). `setup/set-agent.mjs` can switch the fleet if needed.
-4. **Permissions** — Captain: allow `gh`, `git` and `orca` so it can act on the autonomy ladder; specialists: **Ask for approval** (they are read-only).
-5. **Background cost** — Look around: off on all specialists, Captain at most daily. Memory upkeep: weekly or off.
-6. **Connectors** — GitHub on Captain and Reviewer; install the Orca app on the repos they cover. No Slack, Linear, or Google yet.
-7. **Skills** — install from this repo:
-   `npx skills add https://github.com/jdflament-sm/orca-bots --skill ob-conventions --skill ob-context --skill ob-captain --skill ob-onboard --skill ob-work --skill ob-review --skill ob-quality --skill ob-experience --skill ob-issues --skill ob-docs --global`
-8. **Automations** — run the disabled commands in `automations/README.md`, inspect with `list/show`, test with `run`, then `edit --enabled`.
-9. **Telemetry** — install community plugin `brodesigns.skill-usage` (community catalog: `https://github.com/stablyai/orca-community-plugins.git`).
-10. **Project** — tell Captain "take over <owner/repo> [and <owner/repo2>…]". It runs `ob-onboard` and asks you a few one-word policy questions. Nothing project-specific goes into this repo.
-11. **Install SOULs** — `bash setup/sync.sh adopt && bash setup/sync.sh apply`, then `bash setup/sync.sh check` (must print only `ok` lines).
-12. **Validate live** — send Captain one message with two topics; confirm both run in parallel, one PR gets a Reviewer verdict, and nothing on the **Ask** tier happens without a gate.
+Captain does all of this through the `ob-setup` skill; this list is for checking or doing it by hand.
 
-Do not push this repo or enable an automation without an explicit go.
-
+1. **Captain** — create it in Orca's Bots sidebar.
+2. **Install** — `bash setup/install.sh` (skills, `~/.config/orca-bots/OWNER.md`, SOULs). Re-run after every `git pull`.
+3. **Owner profile** — fill `~/.config/orca-bots/OWNER.md`; renamed bot folders go in `~/.config/orca-bots/folders` as `role=folder`.
+4. **Specialists** — `bash setup/create-bots.sh` prints one offer per bot; run the ones you want, press **Create bot**, then `bash setup/install.sh` again.
+5. **Agent** — Claude by default; `node setup/set-agent.mjs <agent>` switches the fleet.
+6. **Permissions** — allow routine commands; keep push, merge, posts and prod on ask.
+7. **Background cost** — Look around off on specialists, Captain at most daily.
+8. **Connectors** — code host on Captain and Reviewer; tracker and chat where the bots need them.
+9. **Automations** — create only what your bots need from `automations/README.md`, test with `run`, then enable.
