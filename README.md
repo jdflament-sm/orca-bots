@@ -106,7 +106,7 @@ One Pokémon per role, picked for what the bot does. Upload `assets/avatars/<rol
 
 | Role | Pokémon | Why |
 | --- | --- | --- |
-| Captain | Charizard | The leader, at the front |
+| Captain | Snorlax | Calm and unshakable: blocks the path until the work is done |
 | Reviewer | Alakazam | Genius that spots every flaw |
 | Auditor | Smeargle | The painter: judges the UI |
 | Release Manager | Pikachu | Fast and full of energy: ships releases |
