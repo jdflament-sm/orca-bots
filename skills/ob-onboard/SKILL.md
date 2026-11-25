@@ -21,7 +21,7 @@ For each repo or folder the owner named (stop as soon as each answer is found):
 - **CI:** `.github/workflows/*` job names; required checks and merge queue via `gh api repos/<r>/rules/branches/<default>` and `.../branches/<default>/protection`; allowed merge methods via `gh api repos/<r>`.
 - **Tracker:** find where tickets live, don't assume. Signals: ticket keys in recent branch names and PR titles (`git log`, `gh pr list --limit 20`), tracker links in PR bodies and PR templates, links in README/`AGENTS.md`, whether the repo's own issues are enabled and used, and which trackers `orca bot connectors` shows signed in. Then record: the tool, its ticket key pattern, how to read and write it (the CLI or connector that is signed in), and which fields mean priority, blocked, needs-design, human-only (labels, priority, status or cycle — whatever that tool uses). Several repos may share one tracker; one repo may use none.
 - **Risky areas:** paths for auth, payments, secrets, migrations, infra, CI config, AI prompts/models, privacy/data egress; `SECURITY.md`.
-- **UI:** does it have one? How to run it locally or where previews deploy (Experience needs this).
+- **UI:** does it have one? How to run it locally or where previews deploy (Auditor needs this).
 - **Multi-repo:** how repos depend on each other (packages, API contracts, deploy order).
 
 Validate the fast-check command once in a throwaway worktree if it is cheap; otherwise mark it "unverified".

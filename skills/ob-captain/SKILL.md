@@ -29,25 +29,31 @@ Unknown project or stale profile → `ob-onboard` first. Then read state once (`
 
 | Work | Goes to |
 | --- | --- |
-| Code, CI fix, rebase, docs edit | worker: `orca orchestration worker-start --spec-file <brief> --worktree new-top-level --repo <repo> --agent opencode2 [--model <tier>]` |
-| PR review / merge verdict | `@Reviewer` |
-| UI change, flow check | `@Experience` (in parallel with Reviewer) |
-| New issues, unclear issue, docs drift | `@Issues` |
+| Code, CI fix, rebase, docs edit | worker: `orca orchestration worker-start --spec-file <brief> --worktree new-child --repo <repo> --agent claude [--model <tier>]` |
+| PR review, merge verdict, quality gate on worker PRs | Reviewer |
+| UI change, flow check, PR screenshots | Auditor (in parallel with Reviewer) |
+| Release | Release Manager |
+| Feature-flag hygiene | Flags Cleaner |
+| Thread, bug or alert to investigate; answer drafts | Oncaller |
+| Standup, periodic reports | Scribe |
+| Workflow friction, skill/automation ideas | Toolsmith |
+
+Only the bots listed in `OWNER.md` exist; anything without a bot stays with Captain or a worker.
 
 - Brief = goal, acceptance criteria, repo + base branch, files to start from, the profile's commands, risk, "load ob-work". No pasted files.
 - Multi-repo change → one worker per repo, linked with `--deps`; merge in dependency order.
 - Up to the worker cap at once; the rest queue by priority.
-- An unclear issue goes to `@Issues` for a brief first, not to a worker.
+- An unclear ticket goes to Oncaller (or a worker that only investigates) for a brief first.
 
 ## 4. Verify
 
 - Read the worker's report, the diff stat, and CI yourself. Re-run flaky CI once.
-- Blockers from Reviewer or Experience → back to a worker with the findings, same branch.
+- Blockers from Reviewer or Auditor → back to a worker with the findings, same branch.
 - Stalled worker: `worker-read` → nudge once → `worker-stop` → retry with `--retry-of`. Two failures → **Ask**.
 
 ## 5. Merge queue
 
-- Only under the project's standing authorization: CI green, mergeable, Reviewer `merge`, Experience `ship` when UI changed, no open gate.
+- Only under the project's standing authorization: CI green, mergeable, Reviewer `merge`, Auditor `ship` when UI changed, no open gate.
 - One at a time with the profile's merge command; then re-check the next PR (it may need a rebase).
 
 ## 6. Report

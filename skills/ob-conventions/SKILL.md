@@ -44,7 +44,7 @@ Ask with one batched message (or `orca orchestration gate-create`), each questio
 
 ## Tokens
 
-- `opencode2` is the default agent; Claude only while its tokens last. Rules never change with the agent.
+- Claude is the default agent. Rules never change with the agent.
 - Model tier by job: small for triage, CI re-runs, rebases, docs; strong for risky review and hard bugs.
 - Read only what the job needs. Pass handoffs a brief and paths, not pasted files.
 - Events over schedules; schedules get a `--precheck` so they skip when nothing changed.

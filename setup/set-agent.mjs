@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Point every Orca bot at opencode2 (the default), using Orca's local runtime.
+// Point every Orca bot at claude (the default), using Orca's local runtime.
 // Claude is a fallback only while Claude tokens are available.
 //
-// Usage: node setup/set-agent.mjs [agent]     (default: opencode2)
+// Usage: node setup/set-agent.mjs [agent]     (default: claude)
 // Env:   ORCA_CLI, ORCA_APP
 //
 // Orca stores a bot's live agent in its runtime, not in bot.json, and the CLI
@@ -15,7 +15,7 @@ import { createRequire } from 'node:module'
 const ORCA = process.env.ORCA_CLI || '/Applications/Orca.app/Contents/Resources/bin/orca'
 const APP = process.env.ORCA_APP || '/Applications/Orca.app'
 const OUT = `${APP}/Contents/Resources/app.asar.unpacked/out`
-const AGENT = process.argv[2] || 'opencode2'
+const AGENT = process.argv[2] || 'claude'
 
 if (!existsSync(`${OUT}/cli/runtime/client.js`)) {
   console.error(`Orca's runtime client was not found under ${OUT}. Set ORCA_APP.`)

@@ -12,12 +12,12 @@ REPO=owner/repo   # one set per repo Captain onboarded; scope with in=owner/repo
 ```bash
 $ORCA automations create --name "Captain: PR opened or updated" --bot Captain \
   --on "github.pull_request_opened in=$REPO" --runs-in chat --results-to none \
-  --prompt "Load ob-captain. A PR changed. Hand it to @Reviewer (and @Experience if UI changed). Act per the autonomy ladder. Report only if something needs the owner." \
+  --prompt "Load ob-captain. A PR changed. Hand it to Reviewer (and Auditor if UI changed). Act per the autonomy ladder. Report only if something needs the owner." \
   --disabled --json
 
 $ORCA automations create --name "Captain: new issue" --bot Captain \
   --on "$TICKET_EVENT" --runs-in chat --results-to none \
-  --prompt "Load ob-captain. A new ticket arrived. Hand it to @Issues for triage and a brief. Dispatch a worker only if the brief is low-risk and the ticket has a priority in the tracker." \
+  --prompt "Load ob-captain. A new ticket arrived. Hand it to Oncaller for a brief. Dispatch a worker only if the brief is low-risk and the ticket has a priority in the tracker." \
   --disabled --json
 
 $ORCA automations create --name "Captain: review requested" --bot Captain \
@@ -54,7 +54,7 @@ $ORCA automations create --name "Captain: morning report" --bot Captain \
 ## 4. Monthly hygiene (optional)
 
 ```bash
-$ORCA automations create --name "Issues: monthly hygiene" --bot Issues \
+$ORCA automations create --name "Captain: monthly hygiene" --bot Captain \
   --trigger "0 9 1 * *" --runs-in chat --results-to none \
   --prompt "Load ob-issues and ob-docs. Stale/unowned issues and docs drift since last month. Report to Captain, ≤5 items. Change nothing in the tracker." \
   --disabled --json
