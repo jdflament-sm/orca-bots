@@ -12,7 +12,7 @@ description: >-
 
 - Read the brief: it carries the repo, base branch, install / test / lint commands and policy. If a command is missing, find it in the repo's manifest or CI workflow.
 - You are in your own worktree on a fresh branch from the base in the brief. Never switch to someone else's branch.
-- If the brief is ambiguous or the fix needs an **Ask** item (see `ob-conventions`), stop and `orca orchestration ask` the coordinator with one question and your default.
+- If the brief is ambiguous or the fix needs an **Ask** item (see `ob-conventions`), stop and `orca orchestration ask` Captain with one question and your default.
 
 ## Do
 
@@ -27,7 +27,7 @@ description: >-
 - Watch checks (`gh pr checks <n> --watch`). On red: read the failing log, fix, push. Re-run once if clearly flaky.
 - Stop after 3 red rounds and report what you tried.
 
-## Report — one message to the coordinator
+## Report — one message to Captain
 
 - `PR #n — what changed — tests run — CI state — risk — open questions`.
 - ≤5 bullets. No pasted diffs.

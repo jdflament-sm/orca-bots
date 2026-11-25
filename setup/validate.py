@@ -55,8 +55,6 @@ for soul in sorted((ROOT / "roles").glob("*/SOUL.md")):
     for ref in set(re.findall(r"\bob-[a-z-]+", text)):
         if ref not in names:
             errors.append(f"roles/{soul.parent.name}/SOUL.md: unknown skill {ref}")
-    if soul.parent.name == "captain" and "orca-coordinator plugin is present" not in text:
-        errors.append("roles/captain/SOUL.md: optional coordinator rule missing")
 
 sync_roles = re.search(r"^ROLES=\((.*)\)", (ROOT / "setup/sync.sh").read_text(), re.M)
 role_dirs = {p.parent.name for p in (ROOT / "roles").glob("*/SOUL.md")}

@@ -2,6 +2,25 @@
 
 Canonical, project-agnostic setup for a small fleet of Orca bots that take over any app project — one repo, many, or a local folder — with the owner talking to a single bot. Owner-agnostic: anyone can use it. Everything personal (style, rules, projects, schedules, sensitive actions) lives in one local `OWNER.md`, never in this repo. **No secrets or tokens.**
 
+## Install
+
+1. In Orca, create a bot named **Captain** (Bots sidebar).
+2. In Captain's chat: **"install orca-bots from https://github.com/jdflament-sm/orca-bots"**.
+
+Captain clones the repo, runs `setup/install.sh`, fills your `OWNER.md` (asking only what it can't find), proposes the specialists that fit your work, and shows a **Create bot** card for each. Press them; Captain finishes the sync and schedules.
+
+Manual install:
+
+```bash
+git clone https://github.com/jdflament-sm/orca-bots ~/orca-bots
+bash ~/orca-bots/setup/install.sh          # skills, owner profile, bot SOULs
+$EDITOR ~/.config/orca-bots/OWNER.md       # your style, rules, projects, schedules
+bash ~/orca-bots/setup/create-bots.sh      # prints one offer per bot: run the ones you want in Captain's chat
+bash ~/orca-bots/setup/install.sh          # again, once the bots exist
+```
+
+Update later: tell Captain "update the bots" (`git pull` + `setup/install.sh`).
+
 ## Fleet
 
 | Bot | Job | Writes |
@@ -50,17 +69,6 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 | `ob-experience` | Auditor |
 | `ob-docs` | Workers for docs edits |
 
-## Quick start
-
-1. In Orca, create a bot named **Captain** (Bots sidebar).
-2. In Captain's chat: **"install orca-bots from https://github.com/jdflament-sm/orca-bots"**.
-
-Captain clones the repo, runs `setup/install.sh`, fills your `OWNER.md` (asking only what it can't find), proposes the specialists that fit your work, and shows a **Create bot** card for each. Press them; Captain finishes the sync and schedules.
-
-Manual install: `git clone … && bash setup/install.sh`, then edit `~/.config/orca-bots/OWNER.md`.
-
-Update later: tell Captain "update the bots" (`git pull` + `setup/install.sh`).
-
 ## Ownership
 
 | Target | Rule |
@@ -81,12 +89,6 @@ Update later: tell Captain "update the bots" (`git pull` + `setup/install.sh`).
 - Handoffs carry a brief and paths, never pasted files. One combined reply per bot, even when it fanned out to subagents.
 - Worker cap per project (default 3); stalled workers are stopped, not left burning.
 - Install `brodesigns.skill-usage`; prune unused skills monthly.
-
-## Coordinator
-
-Captain alone carries this rule:
-
-> If the orca-coordinator plugin is present, keep its board current; if absent, ignore it — it is optional.
 
 ## Maintenance
 
