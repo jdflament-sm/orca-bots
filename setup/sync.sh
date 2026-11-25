@@ -4,8 +4,9 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# role[:bot-folder] — folder defaults to the role name
-ROLES=(captain reviewer auditor:experience release-manager:release flags-cleaner:flags oncaller scribe toolsmith)
+ROLES=(captain reviewer auditor release-manager flags-cleaner oncaller scribe toolsmith)
+# Optional: map a role to a differently named bot folder, one `role=folder` per line.
+FOLDERS="${ORCA_BOTS_FOLDERS:-$HOME/.config/orca-bots/folders}"
 DST="${ORCA_BOTS_DIR:-$HOME/.orca/bots}"
 STATE="${ORCA_BOTS_STATE:-$HOME/.local/state/orca-bots}"
 DB="$STATE/manifest.tsv"
@@ -29,9 +30,12 @@ record() {
   mv "$tmp" "$DB"
 }
 
+OWNER_SRC="${ORCA_BOTS_OWNER:-$HOME/.config/orca-bots/OWNER.md}"
+
 fail=0
 for entry in "${ROLES[@]}"; do
-  role="${entry%%:*}"; folder="${entry#*:}"
+  role="$entry"; folder="$role"
+  if [[ -f "$FOLDERS" ]]; then m="$(awk -F= -v r="$role" '$1==r {print $2; exit}' "$FOLDERS")"; [[ -n "$m" ]] && folder="$m"; fi
   f="$ROOT/roles/$role/SOUL.md"
   target="$DST/$folder/SOUL.md"
   sh="$(hash "$f")"
@@ -40,6 +44,7 @@ for entry in "${ROLES[@]}"; do
     echo "skip     $role (no bot folder $folder: create the bot first)"
     continue
   fi
+  if [[ "$MODE" == apply && -f "$OWNER_SRC" ]]; then cp "$OWNER_SRC" "$DST/$folder/OWNER.md"; fi
   if [[ ! -e "$target" ]]; then
     if [[ "$MODE" == apply ]]; then
       cp "$f" "$target"

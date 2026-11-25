@@ -1,22 +1,22 @@
 # Orca bots
 
-Canonical, project-agnostic setup for a small fleet of Orca bots that take over any app project — one repo, many, or a local folder — with the owner talking to a single bot. Private copy for JD's fleet, adapted from `jdflament/orca-bots`. Still **no secrets or tokens**.
+Canonical, project-agnostic setup for a small fleet of Orca bots that take over any app project — one repo, many, or a local folder — with the owner talking to a single bot. Owner-agnostic: anyone can use it. Everything personal (style, rules, projects, schedules, sensitive actions) lives in one local `OWNER.md`, never in this repo. **No secrets or tokens.**
 
 ## Fleet
 
 | Bot | Job | Writes |
 | --- | --- | --- |
-| **Captain** | JD's only contact. Splits work, dispatches workers and bots, verifies, puts decisions on items. | Per the autonomy ladder |
+| **Captain** | The owner's only contact. Splits work, dispatches workers and bots, verifies, puts decisions on items. | Per the autonomy ladder |
 | **Reviewer** | Merge gate and code-quality gate on every worker PR; scheduled PR reviews and comment triage. | Comment reviews only |
 | **Auditor** | Audits the running product for what a PR changes: technical + UI/UX, PR screenshots. | Nothing |
-| **Release Manager** | Monday prod release: scope, deploy order, post-deploy checks, drafts. | Nothing without a go |
-| **Flags Cleaner** | JD's Unleash flags: ticket links, cleanup of fully-on flags, ticket drafts. | Nothing without a go |
+| **Release Manager** | Team releases: scope, deploy order, post-deploy checks, drafts. | Nothing without a go |
+| **Flags Cleaner** | The owner's feature flags: ticket links, cleanup of fully-on flags, ticket drafts. | Nothing without a go |
 | **Oncaller** | Investigates threads, bugs and alerts; drafts answers; weekly oncall summary. | Nothing |
-| **Scribe** | Daily standup, contributions page every 2 weeks. | One Notion page |
+| **Scribe** | Daily standup and periodic reports. | Only pages listed in `OWNER.md` |
 | **Toolsmith** | Up to 3 workflow improvements a week, each with a ready PR. | Nothing without a go |
 | *Workers* | Short-lived agents Captain starts per task, each in its own worktree (`ob-work`). | Own branch + PR |
 
-Specialists only talk to Captain; JD only talks to Captain.
+The owner only talks to Captain; specialists only talk to Captain. Pick the specialists you need: Captain + Reviewer is a valid fleet.
 
 Workers are not bots: they cost nothing when idle and run in parallel up to the project's cap.
 
@@ -35,7 +35,7 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 | --- | --- |
 | `roles/<role>/SOUL.md` | Canonical SOUL per bot |
 | `skills/` | Agent-agnostic `ob-*` skills, installable from this repo |
-| `templates/` | Optional `AGENTS.md` marker block for a project |
+| `templates/` | `OWNER.md` (the owner profile every bot reads) and an optional `AGENTS.md` marker block |
 | `automations/` | Event and schedule automations, all waking Captain |
 | `setup/` | Sync, bot proposals, agent switch, bootstrap checklist, validator |
 
@@ -52,12 +52,14 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 
 ## Quick start
 
-1. Create Captain manually in the Bots sidebar.
-2. From Captain's chat, `bash setup/create-bots.sh` → run each printed command → **Create bot** for each specialist.
-3. Install skills:
+1. Copy `templates/OWNER.md` to `~/.config/orca-bots/OWNER.md` and fill it in. If a bot folder name differs from its role, add `role=folder` lines to `~/.config/orca-bots/folders`.
+2. Create Captain manually in the Bots sidebar.
+3. From Captain's chat, `bash setup/create-bots.sh` → run each printed command → **Create bot** for each specialist.
+4. Install skills:
    `npx skills add https://github.com/jdflament-sm/orca-bots --skill ob-conventions --skill ob-context --skill ob-captain --skill ob-onboard --skill ob-work --skill ob-review --skill ob-quality --skill ob-experience --skill ob-issues --skill ob-docs --global`
-4. Hand Captain a project: "take over owner/repo" (or several repos, or a folder). It discovers stack, commands, CI, merge rules and labels, then asks a few one-word policy questions.
-5. Finish `setup/bootstrap.md`.
+5. Hand Captain a project: "take over owner/repo" (or several repos, or a folder). It discovers stack, commands, CI, merge rules and labels, then asks a few one-word policy questions.
+6. `bash setup/sync.sh adopt && bash setup/sync.sh apply` installs each SOUL and your `OWNER.md`.
+7. Finish `setup/bootstrap.md`.
 
 ## Ownership
 

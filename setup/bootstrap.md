@@ -1,4 +1,5 @@
 # Bootstrap checklist
+0. **Owner profile** — copy `templates/OWNER.md` to `~/.config/orca-bots/OWNER.md`, fill it in; add `role=folder` lines to `~/.config/orca-bots/folders` for renamed bots.
 
 1. **Cleanup** — old bot folders are removed; delete any old Captain manually in Orca's Bots sidebar.
 2. **Create bots** — create Captain manually in Orca, then from its chat run `bash setup/create-bots.sh` and press **Create bot** on each card, then `bash setup/sync.sh adopt && bash setup/sync.sh apply`.
