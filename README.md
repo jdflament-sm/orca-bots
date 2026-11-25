@@ -99,3 +99,18 @@ Workers are not bots: they cost nothing when idle and run in parallel up to the 
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Avatars
+
+One Pokémon per role, picked for what the bot does. Upload `assets/avatars/<role>.png` in each bot's settings (Orca has no CLI for avatars). Artwork © Nintendo / Game Freak / The Pokémon Company; internal use only.
+
+| Role | Pokémon | Why |
+| --- | --- | --- |
+| Captain | Charizard | The leader, at the front |
+| Reviewer | Alakazam | Genius that spots every flaw |
+| Auditor | Smeargle | The painter: judges the UI |
+| Release Manager | Pikachu | Fast and full of energy: ships releases |
+| Flags Cleaner | Muk | Eats waste: swallows dead flags |
+| Oncaller | Lucario | Reads aura to find what's hidden |
+| Scribe | Unown | Made of letters: writes the standups |
+| Toolsmith | Machamp | Four arms, any job: builds the tools |
