@@ -7,6 +7,9 @@ Every bot reads this file first. Keep it short; it lives outside the repo (defau
 - Logins (code host, tracker, chat):
 - Timezone, working days, holidays calendar:
 
+## Scope (what bots may pick up unprompted)
+- e.g. my PRs, PRs requesting my review, tickets assigned to or created by me, threads I'm in or mentioned in, flags I created
+
 ## Style
 - How answers should read (length, tone, language, terms kept in another language):
 - Shortcuts (e.g. "tldr" = cut in half):
