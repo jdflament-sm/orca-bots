@@ -28,6 +28,8 @@ description: >-
 - Bundle size, large imports, synchronous I/O on startup.
 - Missing measurement: suggest the benchmark or profiler command, do not guess.
 
+- For a whole module or repo, `/ponytail-audit` (if installed) gives a ranked first pass; verify each finding before reporting it.
+
 ## Output
 
 - Rank blocker / warning / nit. One bullet each with `file:line`.

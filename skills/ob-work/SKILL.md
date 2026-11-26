@@ -22,6 +22,8 @@ description: >-
 - Run the profile's lint + test commands locally; fix what you broke.
 - Commit with a clear message; push the branch; open a PR (draft if the profile says so) that links the issue (`Fixes #n`).
 
+- If the Ponytail plugin is installed (`/ponytail-help` works), follow it while coding and run `/ponytail-review` on your diff before opening the PR; fix what is real, list what you skipped in the report.
+
 ## CI loop
 
 - Watch checks (`gh pr checks <n> --watch`). On red: read the failing log, fix, push. Re-run once if clearly flaky.

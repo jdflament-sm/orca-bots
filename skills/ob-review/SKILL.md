@@ -18,6 +18,8 @@ description: >-
 7. **Security:** input validation, authz checks, secrets in code or logs, unsafe deps, data leaving the device.
 8. **Scope:** unrelated changes, debug leftovers, oversized diff, missing docs for user-facing changes.
 
+- If the Ponytail plugin is installed, run `/ponytail-review` on the PR as a second pass and merge its real findings into yours.
+
 ## Output
 
 - Rank: blocker / warning / nit.
