@@ -24,6 +24,20 @@ description: >-
 
 - If the Ponytail plugin is installed (`/ponytail-help` works), follow it while coding and run `/ponytail-review` on your diff before opening the PR; fix what is real, list what you skipped in the report.
 
+## Shell hygiene
+
+Every item here avoids a permission prompt that stops you and makes the owner click.
+
+- One plain command per call. No `&&`/`;` chains, no `cd` (use `git -C <dir>`), no shell variables, `$(...)`, or brace expansion `{a,b}`: write the literal paths.
+- Edit and create files with Read/Edit/Write. No `sed -i`, `python -c`, or heredocs (`cat <<EOF`).
+- Docs and web pages: WebFetch (or the web-fetch agent), never `curl`.
+- Never touch `bunfig.toml`, `.env*` or other token files, never copy a repo into tmp, never print tokens.
+- One dev server, started in the background and reused. No `sleep` loops. Never `pkill` or restart a server you did not start.
+- No `Co-Authored-By` or "Generated with" lines in commits or PR bodies; check `git -C <dir> log -1 --format=%B` before pushing.
+- Say "CI green" only when `gh pr checks <n>` shows every check finished and passing. Before saying a component or API does not exist, check the installed or published package.
+- A handoff or question always gets an answer, even "blocked: <why>".
+- If a command still prompts, do not retry variants: rephrase it as a plain tool call, or `orca orchestration ask` Captain.
+
 ## CI loop
 
 - Watch checks (`gh pr checks <n> --watch`). On red: read the failing log, fix, push. Re-run once if clearly flaky.
