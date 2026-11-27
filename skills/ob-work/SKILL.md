@@ -24,6 +24,8 @@ description: >-
 
 - If the Ponytail plugin is installed (`/ponytail-help` works), follow it while coding and run `/ponytail-review` on your diff before opening the PR; fix what is real, list what you skipped in the report.
 
+- If the change touches UI and the Impeccable skill is installed (`/impeccable` is listed), use it: `critique` while shaping, then `audit` and `polish` on the result, and follow its anti-slop checks. The project's design system (Compass for Sales Marker) is the authority: Impeccable never changes colours, fonts, tokens or components the design system defines. If its launcher fails (it downloads a binary on first run), do not retry; read PRODUCT.md/DESIGN.md directly and continue.
+
 ## Shell hygiene
 
 Every item here avoids a permission prompt that stops you and makes the owner click.
