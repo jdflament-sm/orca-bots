@@ -22,6 +22,12 @@ description: >-
 - **Accessibility:** keyboard path, visible focus, contrast, labels, alt text, heading order, reduced motion.
 - **Perceived performance:** layout shift, slow feedback, blocking spinners, large images, janky transitions.
 
+## Impeccable (when installed)
+
+- If `/impeccable` is listed, run its `audit` (a11y, performance, responsive) and `critique` (UX heuristics, anti-slop) on the changed screen and fold the findings into the checks above.
+- The project's design system (Compass for Sales Marker) stays the authority. Report an Impeccable suggestion that conflicts with it as a nit at most; never propose changing colours or fonts the design system defines.
+- Report only: do not run its editing commands (`polish`, `bolder`, …). If its launcher fails (it downloads a binary on first run), do not retry; audit with the checks above.
+
 ## Output
 
 - One finding per bullet: `selector/state — expected vs actual — rule or convention — smallest fix`.
